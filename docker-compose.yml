@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: DATN           
+      MYSQL_ROOT_PASSWORD: Hoppho@30
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"  
+
+  web:
+    build: .
+    command: gunicorn --bind 0.0.0.0:8000 config.wsgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db  # Bắt buộc web phải đợi db chạy xong mới chạy
+
+volumes:
+  db_data:
