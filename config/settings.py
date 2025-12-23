@@ -31,6 +31,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://main.d1a5tmng3m9mg8.amplifyapp.com', 
+    'https://necessarily-neon-grammar-harmony.trycloudflare.com', 
+]
 # Application definition
 
 INSTALLED_APPS = [
